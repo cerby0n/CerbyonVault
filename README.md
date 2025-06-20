@@ -40,7 +40,7 @@ CerbyonVault/
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/cerby0n/CerbyonVault.git
+git clone https://github.com/cerby0n/cerbyonvault.git
 cd cerbyonvault
 ```
 
