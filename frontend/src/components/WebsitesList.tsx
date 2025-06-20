@@ -88,7 +88,7 @@ export default function WebsitesList() {
               ))}
             </select>
           </div>
-          <div className="w-full overflow-x-auto">
+          <div className="w-full overflow-x-auto max-h-[calc(100vh-225px)] overflow-y-auto">
             <table className="table w-full rounded table-fixed shadow">
               <thead>
                 <tr className="">

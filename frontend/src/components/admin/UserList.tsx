@@ -139,7 +139,7 @@ export default function UserList() {
           </button>
         </div>
       </div>
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-auto max-h-[calc(100vh-150px)] overflow-y-auto">
         <table className="table w-full ">
           <thead>
             <tr>

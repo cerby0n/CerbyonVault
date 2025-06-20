@@ -253,7 +253,7 @@ interface CertificateTableProps {
 }
 
 const CertificateTable: React.FC<CertificateTableProps> = ({
-  certificates=[],
+  certificates = [],
   dateFormat = "DD MMM YYYY",
 }) => {
   const navigate = useNavigate();
@@ -262,7 +262,7 @@ const CertificateTable: React.FC<CertificateTableProps> = ({
     navigate("/certificates", { state: { selectedCertId: cert.id } });
   };
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto max-h-[calc(100vh-620px)] overflow-y-auto">
       <table className="table table-pin-rows">
         <thead className="">
           <tr>

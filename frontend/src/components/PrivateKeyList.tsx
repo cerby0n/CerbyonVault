@@ -120,17 +120,19 @@ export default function PrivateKeyList() {
                 </button>
               ))}
             </div>
-            <ul className="">
-              {filteredKeys.map((key) => (
-                <PrivateKeyNode
-                  key={key.id}
-                  privateKey={key}
-                  selectedIds={selectedItems.map((item) => item.id)}
-                  onClick={(e) => handleSelect(key, e, keys)}
-                  onDoubleClick={() => handleOpenDetails(key)}
-                />
-              ))}
-            </ul>
+            <div className="flex-1 min-h-0 max-h-[calc(100vh-200px)] overflow-y-auto">
+              <ul>
+                {filteredKeys.map((key) => (
+                  <PrivateKeyNode
+                    key={key.id}
+                    privateKey={key}
+                    selectedIds={selectedItems.map((item) => item.id)}
+                    onClick={(e) => handleSelect(key, e, keys)}
+                    onDoubleClick={() => handleOpenDetails(key)}
+                  />
+                ))}
+              </ul>
+            </div>
           </div>
 
           {selectedItems.length === 1 && (

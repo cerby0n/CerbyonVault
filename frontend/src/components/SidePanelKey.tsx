@@ -83,7 +83,7 @@ export default function SidePanelKey({
   };
 
   return (
-    <div className="p-4 space-y-8 select-none ">
+    <div className="p-4 space-y-8 select-none max-h-[calc(100vh-64px)] overflow-y-auto">
       <div className="flex justify-end mb-4">
         <button onClick={onClose} className="all-[unset]">
           <X

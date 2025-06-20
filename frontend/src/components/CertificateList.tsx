@@ -145,7 +145,7 @@ export default function CertificateList() {
 
   return (
     <div className="w-full flex">
-      <div className="flex flex-col w-full space-y-2">
+      <div className="flex flex-col w-full space-y-2 flex-1 min-h-0">
         <ListHeader
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -155,7 +155,7 @@ export default function CertificateList() {
           clearSelection={clearSelection}
         />
 
-        <div className="flex w-full h-full bg-base-100 rounded">
+        <div className="flex w-full flex-1 min-h-0 bg-base-100 rounded">
           {/* Password Modal for PFX Files */}
           {showPasswordModal && (
             <PasswordModal
@@ -169,9 +169,9 @@ export default function CertificateList() {
           )}
 
           {/* Certificate Tree List */}
-          <ul className="ml-4 mt-4 space-y-2 flex-1 min-w-0">
-            <div className="flex space-x-4 mb-4">
-              {/* Valid Filter */}
+          <div className="flex flex-col flex-1 min-w-0 min-h-0">
+            {/* Filter Bar (not scrollable) */}
+            <div className="flex space-x-4 mb-4 ml-4 mt-4">
               <div className="flex gap-2">
                 {[
                   { label: "All", value: "all" },
@@ -193,8 +193,6 @@ export default function CertificateList() {
                   </button>
                 ))}
               </div>
-
-              {/* Type Filter */}
               <select
                 className="border border-secondary/50 p-1 rounded font-medium bg-base-100"
                 value={typeFilter}
@@ -206,42 +204,47 @@ export default function CertificateList() {
                 <option value="leaf">Leaf</option>
               </select>
             </div>
-            {searchTerm === ""
-              ? filterCertificates(fullTree).map((cert) => (
-                  <TreeItem
-                    key={cert.id}
-                    cert={cert}
-                    selectedIds={selectedItems.map((item) => item.id)}
-                    onClick={(e, cert) => handleSelect(cert, e, certificates)}
-                    onDoubleClick={(cert) => handleOpenDetails(cert)}
-                    onChildSelect={(e, cert) =>
-                      handleSelect(cert, e, certificates)
-                    }
-                    onChildDoubleClick={() => handleOpenDetails(cert)}
-                    onContextMenu={handleRightClick}
-                    isFlat={false}
-                  />
-                ))
-              : filterCertificates(certs)
-                  .filter((cert) =>
-                    cert.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
-                  .map((cert) => (
-                    <TreeItem
-                      key={cert.id}
-                      cert={cert}
-                      selectedIds={selectedItems.map((item) => item.id)}
-                      onClick={(e, cert) => handleSelect(cert, e, certificates)}
-                      onDoubleClick={(cert) => handleOpenDetails(cert)}
-                      onChildSelect={(e, cert) =>
-                        handleSelect(cert, e, certificates)
-                      }
-                      onChildDoubleClick={() => handleOpenDetails(cert)}
-                      onContextMenu={handleRightClick}
-                      isFlat={true}
-                    />
-                  ))}
-          </ul>
+            {/* Scrollable Certificate List */}
+            <div className="flex-1 min-h-0 max-h-[calc(100vh-200px)] overflow-y-auto">
+              <ul className="space-y-2 ml-4">
+                {searchTerm === ""
+                  ? filterCertificates(fullTree).map((cert) => (
+                      <TreeItem
+                        key={cert.id}
+                        cert={cert}
+                        selectedIds={selectedItems.map((item) => item.id)}
+                        onClick={(e, cert) => handleSelect(cert, e, certificates)}
+                        onDoubleClick={(cert) => handleOpenDetails(cert)}
+                        onChildSelect={(e, cert) =>
+                          handleSelect(cert, e, certificates)
+                        }
+                        onChildDoubleClick={() => handleOpenDetails(cert)}
+                        onContextMenu={handleRightClick}
+                        isFlat={false}
+                      />
+                    ))
+                  : filterCertificates(certs)
+                      .filter((cert) =>
+                        cert.name.toLowerCase().includes(searchTerm.toLowerCase())
+                      )
+                      .map((cert) => (
+                        <TreeItem
+                          key={cert.id}
+                          cert={cert}
+                          selectedIds={selectedItems.map((item) => item.id)}
+                          onClick={(e, cert) => handleSelect(cert, e, certificates)}
+                          onDoubleClick={(cert) => handleOpenDetails(cert)}
+                          onChildSelect={(e, cert) =>
+                            handleSelect(cert, e, certificates)
+                          }
+                          onChildDoubleClick={() => handleOpenDetails(cert)}
+                          onContextMenu={handleRightClick}
+                          isFlat={true}
+                        />
+                      ))}
+              </ul>
+            </div>
+          </div>
           {contextMenu.visible && (
             <CertificateContextMenu
               x={contextMenu.x}
