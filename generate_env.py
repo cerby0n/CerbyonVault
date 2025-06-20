@@ -24,7 +24,7 @@ DB_PORT=5432
 DOMAIN=localhost
 
 DJANGO_DEBUG=False
-DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost,backend,frontend
+DJANGO_ALLOWED_HOSTS=localhost
 DJANGO_CORS_ALLOWED_ORIGINS=http://localhost,http://localhost:5173
 KEY_ENCRYPTION_SECRET="{key_encryption_secret}"
 
