@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+.env*
+media/
+.git/
+*$py.class
